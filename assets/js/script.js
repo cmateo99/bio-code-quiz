@@ -54,9 +54,9 @@ function quizStart(){
     startTimer();
 }
 function rearrange(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    for (let i = array.length - 1;i> 0;i--) {
+      let j =Math.floor(Math.random()*(i+1));
+      [array[i],array[j]]=[array[j],array[i]];
     }
     console.log(array);
     return array;
@@ -91,7 +91,6 @@ function renderQuiz(questions){
         answerButton.addEventListener('click',function(){
             if (currentQuestion.correctAnswer === answerButton.textContent){
                 score++;
-                console.log(score);
             } else {
                 timerCount -= 10;
             }
@@ -108,9 +107,9 @@ function endGame() {
     timerBox.setAttribute('style','display:none');
     clearInterval(timer);
     quizArea.innerHTML = `
-    <h3 class="title has-text-centered is-large">Your score is ${score}.</h4>
+    <h3 class="title has-text-centered is-large">You scored ${score} points!</h4>
     <h4 class=" has-text-centered is-small">Enter Your Initials</h4>
-    <input class='initials-input my-2' type="text" id="initials" name="initials">
+    <input class='initialsInput my-2' type="text" id="initials" name="initials">
     <div class="buttons is-flex is-flex-direction-column is-align-items-center">
         <button class="button is-primary my-4" id="submitScore">Submit Score</button>
     </div>`;
@@ -124,8 +123,6 @@ function endGame() {
 function logScore(){
     console.log("submit score")
     var initial = document.querySelector("#initials").value;
-    console.log(initial)
-
     var scores = JSON.parse(localStorage.getItem('scores')) ||[];
     scores.push({ initial,score});
     localStorage.setItem("scores", JSON.stringify(scores));
@@ -137,18 +134,14 @@ function scoreBoard(){
     startScreen.setAttribute('style','display:none');
     timerBox.setAttribute('style','display:none');
     scoreTable.setAttribute('style','display:block')
-    
     var scores = JSON.parse(localStorage.getItem('scores')) ||[];
-    console.log(scores)
     for (let i = 0; i < scores.length; i++) {
         var score = scores[i];
         var row = document.createElement("tr");
         var initialArea = document.createElement("td");
         var scoreArea = document.createElement("td");
-      
         initialArea.textContent = score.initial;
         scoreArea.textContent = score.score;
-      
         row.appendChild(initialArea);
         row.appendChild(scoreArea);
         scoreTable.querySelector("tbody").appendChild(row);

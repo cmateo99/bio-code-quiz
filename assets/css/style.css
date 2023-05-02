@@ -15,14 +15,17 @@
   #timerBox{
     display: none;
   }
+  
   #scoreTable{
     display:none;
   }
+
   .initialsInput {
     display: block;
     margin: 0 auto;
     text-align: center;
   }
+
   #quizArea {
     max-width: 50rem;
     margin: 0 auto;
@@ -36,7 +39,6 @@
   }
   
   #quizArea ul {
-    
     margin: 0;
     padding: 0;
   }
@@ -59,4 +61,8 @@
   }
   #quizContainer{
     display:none;
+  }
+  #scoreTable{
+    font-size: 1.25rem;
+    padding: 1rem;
   }
