@@ -5,21 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biology Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="title has-text-centered">Biology Quiz</h1>
+<header>
+  <section class="container" id="startScreen">
+    <h1 class="title has-text-centered">Biology Quiz</h1>
+  </div>
+  <div class="box is-medium">
+    <div class="has-text-centered">
+      <div class="buttons is-flex is-flex-direction-column is-align-items-center">
+        <button class="button is-success is-large" id="startQuiz">Start Quiz!</button>
+        <button class="button is-primary" id="initialScore">High Scores</button>
+      </div>
     </div>
-    <div class="box is-medium" id="startScreen">
-        <div class="has-text-centered">
-          <div class="buttons is-flex is-flex-direction-column is-align-items-center">
-            <button class="button is-success is-large" id="startQuiz">Start Quiz!</button>
-            <button class="button is-primary" id="scores">High Scores</button>
-          </div>
+  </section>
+</header>
+<section id="timerBox">
+  <div class="box has-text-centered">
+    <p class="subtitle">Time Left</p>
+    <p id="timerArea" class="title"></p>
+  </div>
+</section>
+<div id="quizContainer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div id="quizArea" class="title">
         </div>
       </div>
-    <script src="./assets/js/script.js"></script>
+    </div>
+  </div>
+</div>
+<section class="container" id="scoreTable">
+  <h5 class="title has-text-centered">HighScores</h5>
+  <button class="button is-success" id="returnBtn">Return</button>
+
+  <div class="box is-medium">
+    <div class="has-text-centered">
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th>Initials</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <button class="button is-danger" id="clearStorage">Clear Scores</button>
+    
+</section>
+
+
+    
+<script src="./assets/js/script.js"></script>
 </body>
 </html>
