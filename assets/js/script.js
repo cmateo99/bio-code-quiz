@@ -38,6 +38,7 @@ let timerElement = document.querySelector('#timerArea');
 let timerBox = document.querySelector('#timerBox');
 
 let returnBtn = document.querySelector('#returnBtn');
+
 let clearBtn = document.querySelector('#clearStorage');
 let score = 0;
 let timer;
@@ -54,9 +55,9 @@ function quizStart(){
     startTimer();
 }
 function rearrange(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    for (let i = array.length - 1;i> 0;i--) {
+      let j =Math.floor(Math.random()*(i+1));
+      [array[i],array[j]]=[array[j],array[i]];
     }
     console.log(array);
     return array;
@@ -82,7 +83,6 @@ function renderQuiz(questions){
     let questionText = document.createElement('h2');
     questionText.textContent = currentQuestion.question;
     questionArea.appendChild(questionText);
-
     let answerUl = document.createElement('ul');
     for(let i=0;i<currentQuestion.answers.length;i++){
         let answerLi = document.createElement('li');
@@ -91,7 +91,6 @@ function renderQuiz(questions){
         answerButton.addEventListener('click',function(){
             if (currentQuestion.correctAnswer === answerButton.textContent){
                 score++;
-                console.log(score);
             } else {
                 timerCount -= 10;
             }
@@ -108,24 +107,22 @@ function endGame() {
     timerBox.setAttribute('style','display:none');
     clearInterval(timer);
     quizArea.innerHTML = `
-    <h3 class="title has-text-centered is-large">Your score is ${score}.</h4>
+    <h3 class="title has-text-centered is-large">You scored ${score} points!</h4>
     <h4 class=" has-text-centered is-small">Enter Your Initials</h4>
-    <input class='initials-input' type="text" id="initials" name="initials">
+    <input class='initialsInput my-2' type="text" id="initials" name="initials">
     <div class="buttons is-flex is-flex-direction-column is-align-items-center">
-        <button class="button is-primary" id="submitScore">Submit Score</button>
+        <button class="button is-primary my-4" id="submitScore">Submit Score</button>
     </div>`;
     let submitScore = document.querySelector("#submitScore");
     if(submitScore){
-    submitScore.addEventListener('click', logScore)
+        submitScore.addEventListener('click', logScore)
     }
-    console.log(score);
+        console.log(score);
     
 }
 function logScore(){
     console.log("submit score")
     var initial = document.querySelector("#initials").value;
-    console.log(initial)
-
     var scores = JSON.parse(localStorage.getItem('scores')) ||[];
     scores.push({ initial,score});
     localStorage.setItem("scores", JSON.stringify(scores));
@@ -136,19 +133,15 @@ function scoreBoard(){
     quizArea.innerHTML = '';
     startScreen.setAttribute('style','display:none');
     timerBox.setAttribute('style','display:none');
-    scoreTable.setAttribute('style','display:block')
-    
+    scoreTable.setAttribute('style','display:block');
     var scores = JSON.parse(localStorage.getItem('scores')) ||[];
-    console.log(scores)
     for (let i = 0; i < scores.length; i++) {
         var score = scores[i];
         var row = document.createElement("tr");
         var initialArea = document.createElement("td");
         var scoreArea = document.createElement("td");
-      
         initialArea.textContent = score.initial;
         scoreArea.textContent = score.score;
-      
         row.appendChild(initialArea);
         row.appendChild(scoreArea);
         scoreTable.querySelector("tbody").appendChild(row);
@@ -156,15 +149,23 @@ function scoreBoard(){
 }
 function loseGame() {
     clearInterval(timer);
+    
     quizArea.innerHTML = `
-        <h2>You ran out of time!</h2>
-        <p>Your score is ${score}.</p>
+        <h2>Quiz incomplete, Try again.</h2>
+        <p>Your scored ${score} point.</p>
+        <div class="buttons is-flex is-flex-direction-column is-align-items-center">
+        <button class="button is-primary my-4" id="returnBtn2">Return to Start</button>
+        </div>
     `;
+    let returnBtn2 = document.querySelector('#returnBtn2');
+    returnBtn2.addEventListener("click", homePage)
+    
 }
 function homePage() {
     startScreen.setAttribute('style','display:block');
     scoreTable.setAttribute('style','display:none');
     quizContainer.setAttribute('style','display:none')
+    timerBox.setAttribute('style','display:none');
 }
 function clearStorage(){
     localStorage.clear();
