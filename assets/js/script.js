@@ -110,9 +110,9 @@ function endGame() {
     quizArea.innerHTML = `
     <h3 class="title has-text-centered is-large">Your score is ${score}.</h4>
     <h4 class=" has-text-centered is-small">Enter Your Initials</h4>
-    <input class='initials-input' type="text" id="initials" name="initials">
+    <input class='initials-input my-2' type="text" id="initials" name="initials">
     <div class="buttons is-flex is-flex-direction-column is-align-items-center">
-        <button class="button is-primary" id="submitScore">Submit Score</button>
+        <button class="button is-primary my-4" id="submitScore">Submit Score</button>
     </div>`;
     let submitScore = document.querySelector("#submitScore");
     if(submitScore){
